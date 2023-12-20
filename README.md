@@ -35,7 +35,7 @@ It boils down to:
 
 First, you have to **download the Plasma LEDs software to your computer**.
 
-- Head over to the releases page and download the latest zip file for Plasma LEDs.
+- Head over to the [Plasma LEDs releases](https://github.com/bitcdr/plasma-leds/releases/) and download the latest zip file for Plasma LEDs.
 
 Then you have to **adapt the `config.py` file** to reflect the setup of your WiFi and your LED strip.
 Minimally, you have to set the following config options:
