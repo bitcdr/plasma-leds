@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plasma LEDs</title>
+    <meta name="description" content="Control LEDs attached to a Raspberry Pi Pico Piromoni Plasma Stick 2040 W running MicroPython" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="chota.min.css" />
+    <script src="storage.js" defer></script>
+  </head>
+  <body>
+    <div class="container hero">
+      <h2>Plasma LEDs</h2>
+      <p>Control LEDs attached to a <a href="https://shop.pimoroni.com/products/plasma-stick-2040-w">Piromoni Plasma Stick 2040 W</a>.</p>
+    </div>
+    <div class="container">
+      <div class="row cards-row">
+        <!-- Black -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background-color: #000"></div>
+          <header>
+            <h4>Black</h4>
+            <p>Save power and enjoy the darkness.</p>
+          </header>
+          <section>
+            <form method="GET">
+              <input type="hidden" name="type" value="black" />
+              <button type="submit">Apply</button>
+            </form>
+          </section>
+        </div>
+        <!-- Hex color -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background-color: #408080"></div>
+          <header>
+            <h4>Hex color</h4>
+            <p>Enjoy a single hexadecimal color.</p>
+          </header>
+          <section>
+            <form>
+              <p>
+                <label for="hex-color-color">Color</label>
+                <input id="hex-color-color" type="color" name="color" value="#408080" list />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="hex-color" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- RGB color -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background-color: #204080"></div>
+          <header>
+            <h4>RGB color</h4>
+            <p>Enjoy a single RGB color.</p>
+          </header>
+          <section>
+            <form>
+              <div class="row">
+                <div class="col-4">
+                  <p>
+                    <label for="rgb-color-red">Red</label>
+                    <input id="rgb-color-red" type="number" name="red" value="32" min="0" max="255" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="rgb-color-green">Green</label>
+                    <input id="rgb-color-green" type="number" name="green" value="64" min="0" max="255" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="rgb-color-blue">Blue</label>
+                    <input id="rgb-color-blue" type="number" name="blue" value="128" min="0" max="255" />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <input type="hidden" name="type" value="rgb-color" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- HSV color -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background-color: #5500ff"></div>
+          <header>
+            <h4>HSV color</h4>
+            <p>Enjoy a single <a href="https://colorpicker.me">HSV color</a>.</p>
+          </header>
+          <section>
+            <form>
+              <div class="row">
+                <div class="col-4">
+                  <p>
+                    <label for="hsv-color-hue">Hue</label>
+                    <input id="hsv-color-hue" type="number" name="hue" value="260" min="0" max="360" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="hsv-color-saturation">Saturation</label>
+                    <input id="hsv-color-saturation" type="number" name="saturation" value="100" min="0" max="100" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="hsv-color-value">Value</label>
+                    <input id="hsv-color-value" type="number" name="value" value="100" min="0" max="100" />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <input type="hidden" name="type" value="hsv-color" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Cheerlights -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background-color: #38a"></div>
+          <header>
+            <h4>Cheerlights</h4>
+            <p>Follow the <a href="https://cheerlights.com/">#cheerlights colors</a>.</p>
+          </header>
+          <section>
+            <form>
+              <p>
+                <label for="cheerlights-update-interval">Update interval in min</label>
+                <input id="cheerlights-update-interval" type="number" name="update-interval" value="5" min="1" max="60" />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="cheerlights" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Fire -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #e60, #e90, #e70, #e20)"></div>
+          <header>
+            <h4>Fire</h4>
+            <p>Spend some time by the fireplace.</p>
+          </header>
+          <section>
+            <form>
+              <p>
+                <label for="fire-update-rate">Update rate per sec</label>
+                <input id="fire-update-rate" type="number" name="update-rate" value="10" min="1" max="120" />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="fire" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Rainbow -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #f00, #ff0, #00c0ff, #c000ff)"></div>
+          <header>
+            <h4>Rainbow</h4>
+            <p>Search for gold at the end of the rainbow.</p>
+          </header>
+          <section>
+            <form>
+              <p>
+                <label for="rainbow-cycle-speed">Cycle speed</label>
+                <input id="rainbow-cycle-speed" type="number" name="cycle-speed" value="20" min="0" max="255" />
+              </p>
+              <p>
+                <label for="rainbow-update-rate">Update rate per sec</label>
+                <input id="rainbow-update-rate" type="number" name="update-rate" value="60" min="1" max="120" />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="rainbow" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Alternating blinkies -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #88ccff, #8855ff)"></div>
+          <header>
+            <h4>Alternating blinkies</h4>
+            <p>Watch two colors switching over and over.</p>
+          </header>
+          <section>
+            <form>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <label for="alternating-left-color">Left color</label>
+                    <input id="alternating-left-color" type="color" name="left-color" value="#88ccff" list />
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p>
+                    <label for="alternating-right-color">Right color</label>
+                    <input id="alternating-right-color" type="color" name="right-color" value="#8855ff" list />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <label for="alternating-wait-time">Wait time in sec</label>
+                <input id="alternating-wait-time" type="number" name="wait-time" value="1" min="1" />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="alternating" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Count up -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #fff, #fff 40%, #000 45%, #000)"></div>
+          <header>
+            <h4>Count up</h4>
+            <p>Finish before the LEDs are done.</p>
+          </header>
+          <section>
+            <form>
+              <p>
+                <label for="count-up-color">Color</label>
+                <input id="count-up-color" type="color" name="color" value="#ffffff" list />
+              </p>
+              <p>
+                <label for="count-up-time">Time in min</label>
+                <input id="count-up-time" type="number" name="time" value="10" min="1" />
+              </p>
+              <p>
+                <label for="count-up-action">Action at end</label>
+                <select id="count-up-action" name="action">
+                  <option value="freeze">Freeze</option>
+                  <option value="flash">Flash ten times, then freeze</option>
+                </select>
+              </p>
+              <p>
+                <input type="hidden" name="type" value="count-up" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Fade Timer -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #000, #ffd500)"></div>
+          <header>
+            <h4>Fade Timer</h4>
+            <p>Fade between two <a href="https://colorpicker.me">HSV colors</a>.</p>
+          </header>
+          <section>
+            <form>
+              <div class="row">
+                <div class="col-4">
+                  <p>
+                    <label for="fade-timer-start-hue">Hue</label>
+                    <input id="fade-timer-start-hue" type="number" name="start-hue" value="50" min="0" max="360" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="fade-timer-start-saturation">Saturation</label>
+                    <input id="fade-timer-start-saturation" type="number" name="start-saturation" value="100" min="0" max="100" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="fade-timer-start-value">Value</label>
+                    <input id="fade-timer-start-value" type="number" name="start-value" value="0" min="0" max="100" />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <label for="fade-timer-time">Fade time in min</label>
+                <input id="fade-timer-fade-time" type="number" name="fade-time" value="5" min="1" max="1440" />
+              </p>
+              <div class="row">
+                <div class="col-4">
+                  <p>
+                    <label for="fade-timer-target-hue">Hue</label>
+                    <input id="fade-timer-target-hue" type="number" name="target-hue" value="50" min="0" max="360" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="fade-timer-target-saturation">Saturation</label>
+                    <input id="fade-timer-target-saturation" type="number" name="target-saturation" value="100" min="0" max="100" />
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    <label for="fade-timer-target-value">Value</label>
+                    <input id="fade-timer-target-value" type="number" name="target-value" value="100" min="0" max="100" />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <input type="hidden" name="type" value="fade-timer" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Sparkles -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #888, #fff, #888)"></div>
+          <header>
+            <h4>Sparkles</h4>
+            <p>See the sparkles in your eyes.</p>
+          </header>
+          <section>
+            <form>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <label for="sparkles-bg-color">Background color</label>
+                    <input id="sparkles-bg-color" type="color" name="bg-color" value="#000000" list />
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p>
+                    <label for="sparkles-sparkles-color">Sparkles color</label>
+                    <input id="sparkles-sparkles-color" type="color" name="sparkles-color" value="#ffffff" list />
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <label for="sparkles-fade-up-speed">Fade up speed</label>
+                    <input id="sparkles-fade-up-speed" type="number" name="fade-up-speed" value="255" min="1" max="255" />
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p>
+                    <label for="sparkles-fade-down-speed">Fade down speed</label>
+                    <input id="sparkles-fade-down-speed" type="number" name="fade-down-speed" value="1" min="1" max="255" />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <label for="sparkles-intensity">Intensity</label>
+                <input id="sparkles-intensity" type="number" name="intensity" value="2" min="1" max="100" />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="sparkles" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+        <!-- Weather --><!--
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #59f, #fafafa, #fafafa, #59f)"></div>
+          <header>
+            <h4>Weather</h4>
+            <p>See the <a href="https://open-meteo.com/">weather's mood</a> for <a href="https://www.google.com/maps">your location</a>.</p>
+          </header>
+          <section>
+            <form>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <label for="weather-latitude">Latitude in degree</label>
+                    <input id="weather-latitude" type="text" name="latitude" value="52.5208" />
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p>
+                    <label for="weather-longitude">Longitude in degree</label>
+                    <input id="weather-longitude" type="text" name="longitude" value="13.4094" />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <label for="weather-time-zone">Time zone</label>
+                <input id="weather-time-zone" type="text" name="time-zone" value="auto" />
+              </p>
+              <p>
+                <label for="weather-update-interval">Update interval in min</label>
+                <input id="weather-update-interval" type="number" name="update-interval" value="10" min="1" max="120" />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="weather" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>-->
+        <!-- Police -->
+        <div class="card card-fixed">
+          <div class="card-img" style="background: linear-gradient(90deg, #00e, #00e, #e00, #e00)"></div>
+          <header>
+            <h4>Police</h4>
+            <p>Pretend being the good cop.</p>
+          </header>
+          <section>
+            <form>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <label for="police-left-color">Left color</label>
+                    <input id="police-left-color" type="color" name="left-color" value="#0000ee" list />
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p>
+                    <label for="police-right-color">Right color</label>
+                    <input id="police-right-color" type="color" name="right-color" value="#ee0000" list />
+                  </p>
+                </div>
+              </div>
+              <p>
+                <label for="police-flash-count">Flash count</label>
+                <input id="police-flash-count" type="number" name="flash-count" value="5" min="1" max="60" />
+              </p>
+              <p>
+                <label for="police-update-rate">Update rate per sec</label>
+                <input id="police-update-rate" type="number" name="update-rate" value="20" min="1" max="120" />
+              </p>
+              <p>
+                <label for="police-spacing">Spacing</label>
+                <input id="police-spacing" type="number" name="spacing" value="1" min="1" max="10" />
+              </p>
+              <p>
+                <input type="hidden" name="type" value="police" />
+                <button type="submit">Apply</button>
+              </p>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

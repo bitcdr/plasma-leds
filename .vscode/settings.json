@@ -1,0 +1,30 @@
+{
+    "python.linting.enabled": true,
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
+    },
+    "micropico.syncFolder": "",
+    "micropico.openOnStart": true,
+    "micropico.pyIgnore": [
+        "**/.mypy_cache",
+        "**/.picowgo",
+        "**/.micropico",
+        "**/.vscode",
+        "**/.gitignore",
+        "**/.git",
+        "**/.DS_Store",
+        "**/project.pico-go",
+        "**/env",
+        "**/venv",
+        "**/.venv",
+        "**/plasma-leds.png"
+    ],
+    "python.analysis.typeshedPaths": [
+        ".vscode/Pico-W-Stub"
+    ],
+    "python.analysis.extraPaths": [
+        ".vscode/Pico-W-Stub"
+    ]
+}
