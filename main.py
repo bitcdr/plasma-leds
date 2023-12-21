@@ -126,7 +126,7 @@ async def fire(led_strip):
             return
 
         for i in range(config.NUM_LEDS):
-            led_strip.set_hsv(i, uniform(0.0, 50 / 360), 1.0, random())
+            led_strip.set_hsv(i, uniform(0.0, 50.0 / 360.0), 1.0, random())
 
         await asyncio.sleep(1.0 / update_rate)
 
@@ -208,10 +208,11 @@ async def rainbow(led_strip):
             return
 
         offset += float(cycle_speed) / 2000.0
+        offset %= 1
 
         for i in range(config.NUM_LEDS):
-            hue = float(i) / config.NUM_LEDS
-            led_strip.set_hsv(i, hue + offset, 1.0, 1.0)
+            hue = (offset + float(i) / config.NUM_LEDS) % 1
+            led_strip.set_hsv(i, hue, 1.0, 1.0)
 
         await asyncio.sleep(1.0 / update_rate)
 
