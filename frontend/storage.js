@@ -14,7 +14,6 @@ window.onload = function () {
 
   // Fill in form values from local storage
   for (const [key, value] of Object.entries(localStorage)) {
-    console.log(key, value);
     if (document.getElementById(key)) {
       document.getElementById(key).value = value;
     }

@@ -20,34 +20,6 @@ def hex_to_rgb(hex_color: str):
     return (int(hex_color_stripped[i : i + 2], 16) for i in (0, 2, 4))
 
 
-def rgb_to_hsv(r: int, g: int, b: int):
-    # Normalize red, green, blue to [0, 1]
-    r_norm = float(1.0 / 255.0 * r)
-    g_norm = float(1.0 / 255.0 * g)
-    b_norm = float(1.0 / 255.0 * b)
-
-    # Compute control vars
-    max_norm_value = max(r_norm, g_norm, b_norm)
-    min_norm_value = min(r_norm, g_norm, b_norm)
-    delta_min_max = max_norm_value - min_norm_value
-
-    if delta_min_max == 0.0:
-        h = 0.0
-    else:
-        h = (
-            ((g_norm - b_norm) / delta_min_max) % 6
-            if max_norm_value == r_norm
-            else ((b_norm - r_norm) / delta_min_max) + 2
-            if max_norm_value == g_norm
-            else ((r_norm - g_norm) / delta_min_max) + 4
-        ) / 6.0
-
-    s = 0 if max_norm_value == 0 else delta_min_max / max_norm_value
-    v = max_norm_value
-
-    return (h, s, v)
-
-
 def black(led_strip):
     for i in range(config.NUM_LEDS):
         led_strip.set_rgb(i, 0, 0, 0)
@@ -217,7 +189,7 @@ async def police(led_strip):
 async def rainbow(led_strip):
     # With code from Piromoni Pico Plasma Stick examples
     # Copyright (c) 2021 Pimoroni Ltd | MIT License | https://github.com/pimoroni/pimoroni-pico/blob/main/micropython/examples/plasma_stick/rainbows.py
-    
+
     global current_leds_config
     global next_leds_config
 
