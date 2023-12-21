@@ -21,6 +21,10 @@ The **technology stack** is based on:
 - [Chota](https://jenil.github.io/chota/), a micro CSS framework.
 - Hand-crafted Python, HTML, CSS and JavaScript code.
 
+As a side effect, the **Plasma LEDs provides a REST-ful API** for controlling the LEDs via encoding the config in the URL.
+If you activate a color or effect, you can see the required search parameters for the GET operation as part of the URL.
+This in general also allows to use alternative clients beyond the batteries included Plasma LEDs web interface.
+
 ## Basic Setup of Plasma Stick
 
 The basic setup of the [Pimoroni Plasma Stick 2040 W](https://shop.pimoroni.com/products/plasma-stick-2040-w) is described by Pimoroni in [Getting started with Raspberry Pi Pico](https://learn.pimoroni.com/tutorial/hel/getting-started-with-pico) and [Assembling Wireless Plasma Kit](https://learn.pimoroni.com/article/assembling-wireless-plasma-kit).
